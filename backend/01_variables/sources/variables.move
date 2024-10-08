@@ -9,6 +9,7 @@ module aptosz3::variables {
     // El codigo en Move no acepta acentos en nigun lugar, ni siquiera en comentarios.
     const SALUDO: vector<u8> = b"Hola, Mundo!";
     const Valor_verdadero: bool = true;
+    
 
     fun practica() {
         // Haciendo uso de constantes:
@@ -18,8 +19,10 @@ module aptosz3::variables {
         // Declarando varables:
         let a = 1; // Las variables en Move se declaran con let
         let b = a + a;
+        let c = a + b;
         print(&a); // Resultado: [debug] 1
         print(&b); // Resultado: [debug] 2
+        print(&c); // Resultado  debug 3
 
         //Nombrando variables:
         // Las variables pueden tener: letras de a a la z, o de A a la Z, asi como digitos del 0 al 9, o guion bajo _.
@@ -53,6 +56,7 @@ module aptosz3::variables {
         { // Abriendo un nuevo scope
             let g = f + f;
             print(&g); // Resultado: [debug] 10
+            print (&g);
         }; // Cerrando el scope
         // print(&g); aqui daria error, dado a que fue declarado en otro scope, y una vez cerrado, ya no tenemos acceso a esa variable.
         // Sin embargo, dado a que ya no estamos en ese scope, podemos redeclararla y usarla:
