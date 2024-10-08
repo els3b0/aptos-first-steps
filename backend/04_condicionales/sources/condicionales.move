@@ -4,6 +4,7 @@ module aptosz3::condicionales {
 
     const ESinAcceso: u64 = 1; // Usualmente las constantes para indicar un error inician con E mayuscula, seguido de la razon del error.
     const NO_HAY_ACCESO: u64 = 2; // Aunque no es necesario, solo se descriptivo en tus errores.
+    const EmenorDeEdad: u64 = 3; // Error menor de edad
 
     fun practica() {
         // If
@@ -22,7 +23,7 @@ module aptosz3::condicionales {
         // Resultado: [debug] "a no es mayor a 20"
 
         // Si la expresion da un resultado, es posible almacenarla en una variable
-        let almacenada = if (a < 100) a else 100;
+        let almacenada = if (a > 100) a else 100;
         print(&almacenada); // Resultado: [debug] 10
 
         // Abort
@@ -41,6 +42,16 @@ module aptosz3::condicionales {
         // Codigos de error
         assert!(acceso_usuario, ESinAcceso); // Es buena practica especificar la razon de un abort/assert.
         assert!(acceso_usuario, NO_HAY_ACCESO);
+        print(&utf8(b"-----------------------"));
+
+        let edad = 100; 
+        if (edad > 18) { 
+            print(&utf8(b"puede acceder a contenidos"));
+
+        } else {
+            abort(3)
+        }
+
     }
 
     #[test]
