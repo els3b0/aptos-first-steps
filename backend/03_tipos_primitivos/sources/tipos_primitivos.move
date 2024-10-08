@@ -57,6 +57,9 @@ module aptosz3::tipos_primitivos {
         
         let negacion = !true; // Invierte el valor.
         print(&negacion); // Resultado: [debug] false
+        let and2 : bool = true && true;
+        print(&and2);
+
 
         
     }
