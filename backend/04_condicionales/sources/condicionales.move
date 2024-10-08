@@ -44,14 +44,14 @@ module aptosz3::condicionales {
         assert!(acceso_usuario, NO_HAY_ACCESO);
         print(&utf8(b"-----------------------"));
 
-        let edad = 100; 
+        let edad = 20; 
         if (edad > 18) { 
             print(&utf8(b"puede acceder a contenidos"));
 
         } else {
             abort(3)
-        }
-
+        };
+        assert!(19 > 18, EmenorDeEdad);  // si esta expresion es false se manda el codigo de error declarado arriba como constante
     }
 
     #[test]
