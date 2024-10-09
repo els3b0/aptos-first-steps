@@ -17,9 +17,60 @@ module aptosz3::cadenas {
         edicion: Option<u16>, // Que es esto?
     } // Nota que no cerramos con ;
 
+    struct Persona has copy, drop {
+        nombre: String,
+        edad: u16,
+        vive: bool,
+    }
+
+    struct Clase has copy, drop {
+        maestro: Persona,
+        materia: String,
+        horario: String,
+    }
+
+
+    struct Escuela has copy, drop {
+        nombre: String,
+        domicilio: String,
+        clases: vector<Clase>,
+    }
+
+
     fun practica() {
         
-        let autor = Autor { nombre: utf8(b"Paulo Cohelo") };
+        let maestro1 = Persona {nombre: utf8(b"Juan Perez"),
+        edad: 34u16,
+        vive: true,
+        
+        };
+
+        let maestro2 = Persona {nombre: utf8(b"Carlos Hernandez"),
+        edad: 45u16,
+        vive: true,
+        };
+
+        let clase1 = Clase { maestro: maestro1,
+        materia: utf8(b"geografia"),
+        horario: utf8(b"8:00 am"),
+
+        };
+
+        let clase2 = Clase { maestro: maestro2,
+        materia: utf8(b"algebra"),
+        horario: utf8(b"12:00 am"),};
+
+
+
+        let escuela = Escuela {nombre: utf8(b"Colegio Tabasco"),
+        domicilio: utf8(b"Calle 9"),
+        clases: vector[clase1, clase2],
+        };
+
+        print(&debug_string(&escuela));
+        let autor = Autor { nombre: utf8(b"Paulo Cohelo")
+        
+         };
         print(&debug_string(&autor)); // Nota que usamos debug_string de la leccion anterior para imprimir el struct completo.
         // Resultado:
         // [debug] "0x5a6f6e612054726573::cadenas::Autor {
@@ -95,6 +146,10 @@ module aptosz3::cadenas {
 
         // Recuerda que puedes obtener informacion sobre las demos operaciones en:
         // https://move-language.github.io/move/structs-and-resources.html
+        
+        
+        
+
     }
 
     #[test]
