@@ -19,7 +19,7 @@ module cuenta::PiedraPapelyTijera1P {
         resultado: u8                    // 0 = Jugador perdio, 1 = Jugador gano, 2 = Empate
     }
 
-    // Inicializa un nuevo juego entre el jugador y la "computadora"
+    // Funcion para Inicializar un nuevo juego entre el jugador y la "computadora"
    public entry fun inicializar_juego(cuenta: &signer) acquires Juego {
     let jugador = signer::address_of(cuenta);
 
@@ -80,8 +80,8 @@ module cuenta::PiedraPapelyTijera1P {
         // Determinar el ganador y actualizar el estado del resultado
         let resultado = determinar_ganador(seleccion, juego_ref.seleccion_computadora);
         juego_ref.resultado = resultado; // 0 = Jugador perdio, 1 = Jugador gano, 2 = Empate
-    }
-
+        }
+    //Funcion para determinar ganador
           fun determinar_ganador(seleccion_jugador: u8, seleccion_computadora: u8): u8 {
         // 0 = Piedra, 1 = Papel, 2 = Tijeras
 
@@ -114,19 +114,18 @@ module cuenta::PiedraPapelyTijera1P {
     let juego_ref = borrow_global<Juego>(cuenta);
     let resultado = juego_ref.resultado;
 
-    // Imprime el resultado como numero (0, 1, or 2) 0 = Jugador perdio, 1 = Jugador gano, 2 = Empate
+                        // Imprime el resultado como numero (0, 1, or 2) 0 = Jugador perdio, 1 = Jugador gano, 2 = Empate
     std::debug::print<u8>(&resultado);
 
     return resultado  // regresa el resultado (0, 1, or 2)
     }
 
 
-
     //Funcion para resetear el juego
     public entry fun reiniciar_juego(cuenta: &signer) acquires Juego {
     let juego_ref = borrow_global_mut<Juego>(signer::address_of(cuenta));
 
-    // Resetea el state del juego
+                    // Resetea el state del juego
     juego_ref.seleccion_jugador = 255;  // Resetea seleccion de jugador, se usa 255 por ser un valor fuera de rango dentro de u8 para distinguir estados inicializados 
     juego_ref.seleccion_computadora = generar_seleccion_computadora();  // Genera una nueva seleccion aleatoria
     juego_ref.status = 0;  // Regresa el status de "EsperandoSeleccion"
