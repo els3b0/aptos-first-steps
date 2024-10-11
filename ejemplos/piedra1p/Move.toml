@@ -1,0 +1,25 @@
+[package]
+name = "PiedraPapel1P"
+version = "0.0.1"
+
+[addresses]
+cuenta = "_" 
+AptosFramework = "0x1" 
+
+[dev-addresses]
+cuenta = "0x2" 
+
+[dependencies.AptosStdlib]
+git = 'https://github.com/aptos-labs/aptos-core.git'
+rev = 'main'
+subdir = 'aptos-move/framework/aptos-stdlib'
+
+[dependencies.MoveStdlib]
+git = 'https://github.com/aptos-labs/aptos-core.git'
+rev = 'main'
+subdir = 'aptos-move/framework/move-stdlib'
+
+[dependencies.AptosFramework]
+git = 'https://github.com/aptos-labs/aptos-core.git'
+rev = 'main'
+subdir = 'aptos-move/framework/aptos-framework'
